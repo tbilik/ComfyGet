@@ -7,8 +7,17 @@ package = " "
 package_file_read = open("/home/" + getpass.getuser() + "/.termget/termget-package-manager","r").read()
 #Imports libraries and sets variables
 
-version = "2.0"
-credit = "TermGet was created by:\n- PizzaLovingNerd (main developer)\n- SudoLinux\n- Dylan Cruz"
+bold = "\033[1m"
+reset = "\033[0m"
+red = "\033[31m"
+green = "\033[32m"
+yellow = "\033[33m"
+blue = "\033[34m"
+magenta = "\033[35m"
+cyan = "\033[36m"
+
+version = "2018-03-03"
+credit = magenta + "\nComfyGet was created by:\n-Linux /usr/\n\nTermGet was created by:\n- PizzaLovingNerd (main developer)\n- SudoLinux\n- Dylan Cruz" + reset
 
 if len(sys.argv) == 2:
     if sys.argv[1] == "apt-get": package = "apt-get"
@@ -48,7 +57,7 @@ if package == " ": #Checks for command line argument
     print("Welcome to TermGet. This is version " + version + "\n\nFirst Time Setup:\n\nPlease choose a package manager\n\n1. apt-get (For Debian, and Debian based systems.)\n2. xbps (For Void Linux, and Void Linux based systems)\n3. dnf (For Fedora, and Fedora based systems)\n4. yum (For older versions of Fedora, and older Fedora based systems)\n5. zypper (For OpenSUSE, and OpenSUSE based systems)\n6. eopkg (For Solus, and Solus based systems)\n7. pacman (For Arch, and Arch based systems)\n8. emerge(For Gentoo, and Gentoo based systems)\n9. pkg (for FreeBSD, and FreeBSD based systems.)\n10. chromebrew (for Chrome OS, Chromium OS, and CloudReady)")
     setup = "True"
 else:
-    print("Welcome to TermGet. This is version " + version)
+    print(green + bold + "Welcome to ComfyGet. This is version " + version + reset)
     time.sleep(1)
     clear()
     setup = "False"
@@ -110,15 +119,15 @@ while setup == "True": #Repeats until setup is not true
 if package != "pip":
     while True: #Starts a loop
         clear()
-        print("Please choose an action\n\n1. Search for packages\n2. Install an application\n3. Remove an application\n4. Update all packages\n5. Update Database\n6. Clean\n7. Credits\n8. Exit")
+        print(cyan + bold + "Please choose an action\n\n" + green + "1. Search for packages\n2. Install an application\n3. Remove an application\n4. Update all packages\n5. Update Database\n6. Clean\n7. Credits\n8. Exit\n" + reset)
         user = input() #Asks for user input
         if user == "1": #Search
             clear()
-            user = input("Please enter search query: ")
+            user = input(blue + "Please enter search query: " + reset)
             print(" ")
             if package == "apt-get": os.system("sudo apt-cache search " + user)
             elif package == "pacman":
-                user1 = input("Which package manager would you like to use?\n\n1. pacman\n2. yaourt\n")
+                user1 = input(cyan + bold + "Which package manager would you like to use?\n\n" + green + "1. pacman\n2. yaourt\n" + reset)
                 if user1 == "1": os.system("sudo pacman -Ss " + user)
                 if user1 == "2": os.system("yaourt -Ss " + user)
             elif package == "xbps": os.system("sudo xbps-query -Rs " + user)
@@ -133,7 +142,7 @@ if package != "pip":
 
         if user == "2": #Install
             clear()
-            user = input("Please enter which package(s) to install: ")
+            user = input(blue + "Please enter which package(s) to install: " + reset)
             print("")
 
             if package == "apt-get": os.system("sudo apt-get install " + user)
@@ -153,10 +162,10 @@ if package != "pip":
 
         if user == "3": #Remove
             clear()
-            user = input("Please enter which package(s) to remove: ")
+            user = input(blue + "Please enter which package(s) to remove: " + reset)
             print("")
-            elif package == "apt-get":
-                user1 = input("How will you like to remove the package?\n\n1. remove, removes just the package (faster)\n2. purge, removes the package, and all it's configuration files (saves space)")
+            if package == "apt-get":
+                user1 = input(cyan + bold + "How will you like to remove the package?\n\n" + green + "1. remove, removes just the package (faster)\n2. purge, removes the package, and all it's configuration files (saves space)" + reset)
                 clear()
                 if user1 == "1": os.system("sudo apt-get remove " + user)
                 if user1 == "2": os.system("sudo apt-get purge " + user)
@@ -174,7 +183,7 @@ if package != "pip":
         if user == "4": #Updates Packages
             clear()
             print("\n")
-            elif package == "apt-get":
+            if package == "apt-get":
                 os.system("sudo apt-get upgrade")
                 os.system("sudo apt-get dist-upgrade")
             elif package == "pacman": os.system("sudo pacman -Syu")
@@ -205,7 +214,7 @@ if package != "pip":
             elif package == "eopkg": os.system("sudo eopkg ur")
             elif package == "emerge": os.system("sudo layman -f")
             elif package == "yum": os.system("sudo yum yum check-update")
-            elif package == "pkg": os.system("sudo pkg update)
+            elif package == "pkg": os.system("sudo pkg update")
             elif package == "chromebrew": print("This feature is unavailable for chromebrew\n")
             input("\nPress enter to continue")
 
@@ -255,11 +264,11 @@ if package != "pip":
 
 if package == "pip": #Starts a loop
     while True:
-	    print("Please choose an action\n\n1. Search for packages\n2. Install an application\n3. Remove an application\n4. List packages installed with pip5. Credits\n6. Exit")
+	    clear(); user = input(cyan + bold + "Please choose an action\n\n" + green + "1. Search for packages\n2. Install an application\n3. Remove an application\n4. List packages installed with pip\n5. Credits\n6. Exit\n\n" + reset)
 
 	    if user == "1": #Search
 		    clear()
-		    user = input("Please enter search query: ")
+		    user = input(blue + "Please enter search query: " + reset)
 		    print(" ")
 		    os.system("sudo pip install " + user)
 
@@ -267,7 +276,7 @@ if package == "pip": #Starts a loop
 
 	    if user == "2": #Install
 		    clear()
-		    user = input("Please enter which package(s) to install: ")
+		    user = input(blue + "Please enter which package(s) to install: " + reset)
 		    print("")
 		    os.system("sudo pip search \"" + user + "\"")
 
@@ -275,14 +284,14 @@ if package == "pip": #Starts a loop
 
 	    if user == "3": #Remove
 		    clear()
-		    user = input("Please enter which package(s) to remove: ")
+		    user = input(blue + "Please enter which package(s) to remove: " + reset)
 		    print("")
 		    os.system("sudo pip uninstall " + user)
 
 	    if user == "4": #List
 		    clear()
 		    print("")
-		    user = input("Please choose an action:\n1. List all packages\n2. List outdated packages")
+		    user = input(cyan + bold + "Please choose an action:\n\n" + green + "1. List all packages\n2. List outdated packages\n\n" + reset)
 		    if user == "1":
 			    os.system("sudo pip list ")
 		    if user == "2":
@@ -293,3 +302,5 @@ if package == "pip": #Starts a loop
 		    time.sleep(3)
 
 	    if user == "6": quit()
+
+
