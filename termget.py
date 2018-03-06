@@ -27,21 +27,21 @@ def setpack(var):
         package_file_write = open("/home/" + getpass.getuser() + "/.termget/termget-package-manager","a")
         if package != "null": package_file_write.write(var)
     except:
-        print("Warning: No package manager file found")
+        print(red + "Warning: No package manager file found" + reset)
 #Imports libraries and sets variables
 
 if getpass.getuser() == "chronos":
     os.system("clear")
     setup = "True"
     while setup == "True":
-        user = input("TermGet has detected this is Chrome OS, Chromium OS, CloudReady, or Nayu OS... is this true?\n\n1. Yes\n2. No\n\n")
+        user = input("ComfyGet has detected this is Chrome OS, Chromium OS, CloudReady, or Nayu OS... is this true?\n\n1. Yes\n2. No\n\n")
         if user == "1":
             setup = "False"
             package = "chromebrew"
         elif user == "2":
             setup = "False"
         else:
-            print("Error. Invaild answer")
+            print(red + "Error. Invalid answer" + reset)
             #Checks for Chromebook
 
 if len(sys.argv) == 2:
@@ -70,7 +70,7 @@ try:
         elif package_file_read == "pkg": package = "pkg"
         elif package_file_read == "chromebrew": package = "chromebrew"
 except:
-    print("Warning: Missing Package File...")
+    print(red + "Warning: Missing Package File..." + reset)
     if package == " ": package = "null"
 print("package manager set to " + package)
 
@@ -80,12 +80,11 @@ def clear(): os.system("clear")
 #Runs "clear" over shell to clear the screen.
 
 clear()
+print(green + bold + "Welcome to ComfyGet. This is version " + version + reset)
 
 if package == " " or package == "null": #Checks for command line argument
-    print("Welcome to TermGet. This is version " + version + " Please choose a package manager:\n\n1. apt-get (For Debian, and Debian based systems.)\n2. xbps (For Void Linux, and Void Linux based systems)\n3. dnf (For Fedora, and Fedora based systems)\n4. yum (For older versions of Fedora, and older Fedora based systems)\n5. zypper (For OpenSUSE, and OpenSUSE based systems)\n6. eopkg (For Solus, and Solus based systems)\n7. pacman (For Arch, and Arch based systems)\n8. emerge(For Gentoo, and Gentoo based systems)\n9. pkg (for FreeBSD, and FreeBSD based systems.)\n10. chromebrew (for Chrome OS, Chromium OS, CloudReady, and ZayuOS)\n")
     setup = "True"
 else:
-    print(green + bold + "Welcome to ComfyGet. This is version " + version + reset)
     time.sleep(1)
     clear()
     setup = "False"
@@ -94,6 +93,7 @@ else:
 #Asks user which package manager to use
 
 while setup == "True": #Repeats until setup is not true
+    print(cyan + bold + "\nPlease choose a package manager:\n\n" + green + "1. apt-get (For Debian, and Debian based systems.)\n2. xbps (For Void Linux, and Void Linux based systems)\n3. dnf (For Fedora, and Fedora based systems)\n4. yum (For older versions of Fedora, and older Fedora based systems)\n5. zypper (For OpenSUSE, and OpenSUSE based systems)\n6. eopkg (For Solus, and Solus based systems)\n7. pacman (For Arch, and Arch based systems)\n8. emerge (For Gentoo, and Gentoo based systems)\n9. pkg (for FreeBSD, and FreeBSD based systems.)\n10. chromebrew (for Chrome OS, Chromium OS, CloudReady, and ZayuOS)\n" + reset)
     user = input() #Asks for user input
     if user == "1":
         setup = "false"
@@ -137,10 +137,9 @@ while setup == "True": #Repeats until setup is not true
         setpack("chromebrew")
     else:
         clear()
-        print("Error. Invaild package manager")
+        print(red + "Error. Invalid package manager" + reset)
         time.sleep(1)
         clear()
-        print("\nPlease choose a package manager\n\n1. apt-get (For Debian, and Debian based systems.)\n2. xbps (For Void Linux, and Void Linux based systems)\n3. dnf (For Fedora, and Fedora based systems)\n4. yum (For older versions of Fedora, and older Fedora based systems)\n5. zypper (For OpenSUSE, and OpenSUSE based systems)\n6. eopkg (For Solus, and Solus based systems)\n7. pacman (For Arch, and Arch based systems)\n8. emerge(For Gentoo, and Gentoo based systems)9. pkg (for FreeBSD, and FreeBSD based systems.)\n10. chromebrew (for Chrome OS, Chromium OS, CloudReady, and NayuOS)\n")
         #Sets up the package manager
 
 if package != "pip":
