@@ -22,6 +22,9 @@ elif [[ $(which zypper 2> /dev/null) ]]; then
 elif [[ $(which eopkg 2> /dev/null) ]]; then
 	echo -n "A Solus or Solus-based system has been detected. Eopkg will be used. Is this correct? [y/n] "
 	pm=eopkg
+elif [[ $(which crew 2> /dev/null) ]]; then
+        echo -n "Chromebrew (an unoffical Chrome/Chromium OS package manager) has been detected. Is this correct? [y/n] "
+        pm=chromebrew
 else
 	echo -n "A package manager has failed to be detected. If you proceed to install the program, termget will ask 
 you to set a package manager manually on first launch. Proceed to install? [y/n] "
