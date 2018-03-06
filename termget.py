@@ -19,7 +19,7 @@ blue = "\033[34m"
 magenta = "\033[35m"
 cyan = "\033[36m"
 
-version = "2018-03-03"
+version = "2018-03-05"
 credit = magenta + "\nComfyGet was created by:\n- Linux /usr/\n\nTermGet was created by:\n- PizzaLovingNerd (main developer)\n- SudoLinux\n- Dylan Cruz" + reset
 
 def setpack(var):
