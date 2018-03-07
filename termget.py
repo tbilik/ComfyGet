@@ -5,11 +5,7 @@ import getpass
 
 package = " "
 
-try:
-    package_file_read = open("/home/" + getpass.getuser() + "/.termget/termget-package-manager","r").read()
-except:
-    print("Warning: No package manager file found?")
-
+# Colors
 bold = "\033[1m"
 reset = "\033[0m"
 red = "\033[31m"
@@ -19,7 +15,12 @@ blue = "\033[34m"
 magenta = "\033[35m"
 cyan = "\033[36m"
 
-version = "2018-03-05"
+try:
+    package_file_read = open("/home/" + getpass.getuser() + "/.termget/termget-package-manager","r").read()
+except:
+    print(red + "Warning: No package manager file found?" + reset)
+
+version = "2018-03-07"
 credit = magenta + "\nComfyGet was created by:\n- Linux /usr/\n\nTermGet was created by:\n- PizzaLovingNerd (main developer)\n- SudoLinux\n- Dylan Cruz" + reset
 
 def setpack(var):
@@ -34,11 +35,11 @@ if getpass.getuser() == "chronos":
     os.system("clear")
     setup = "True"
     while setup == "True":
-        user = input("ComfyGet has detected this is Chrome OS, Chromium OS, CloudReady, or Nayu OS... is this true?\n\n1. Yes\n2. No\n\n")
-        if user == "1":
+        user = input(blue + "ComfyGet has detected this is Chrome/Chromium OS. Is this true? [y/n] " + reset)
+        if user == "y":
             setup = "False"
             package = "chromebrew"
-        elif user == "2":
+        elif user == "n":
             setup = "False"
         else:
             print(red + "Error. Invalid answer" + reset)
@@ -72,11 +73,11 @@ try:
 except:
     print(red + "Warning: Missing Package File..." + reset)
     if package == " ": package = "null"
-print("package manager set to " + package)
 
 #Checks for command line argument
 
 def clear(): os.system("clear")
+def askreturn(): input(yellow + bold + "\nPress enter to continue" + reset)  
 #Runs "clear" over shell to clear the screen.
 
 clear()
@@ -164,7 +165,7 @@ if package != "pip":
             elif package == "emerge": os.system("emerge -S " + user)
             elif package == "pkg": os.system("pkg search " + user)
             elif package == "chromebrew": os.system("crew search " + user)
-            input("\nPress enter to continue")
+            askreturn()
 
         if user == "2": #Install
             clear()
@@ -184,7 +185,7 @@ if package != "pip":
             elif package == "emerge": os.system("emerge " + user)
             elif package == "pkg": os.system("sudo pkg install " + user)
             elif package == "chromebrew": os.system("crew install " + user)
-            input("\nPress enter to continue")
+            askreturn()
 
         if user == "3": #Remove
             clear()
@@ -205,7 +206,7 @@ if package != "pip":
             elif package == "emerge": os.system("emerge -C" + user)
             elif package == "pkg": os.system("sudo pkg delete " + user)
             elif package == "chromebrew": os.system("crew remove " + user)
-            input("\nPress enter to continue")
+            askreturn()
 
         if user == "4": #Updates Packages
             clear()
@@ -228,7 +229,7 @@ if package != "pip":
                 os.system("sudo emerge -uDN world")
             elif package == "pkg": os.system("sudo pkg upgrade")
             elif package == "chromebrew": os.system("crew upgrade")
-            input("\nPress enter to continue")
+            askreturn()
 
         if user == "5": #Updates Database
             clear()
@@ -242,7 +243,7 @@ if package != "pip":
             elif package == "yum": os.system("sudo yum yum check-update")
             elif package == "pkg": os.system("sudo pkg update")
             elif package == "chromebrew": print("This feature is unavailable for chromebrew\n")
-            input("\nPress enter to continue")
+            askreturn()
 
         if user == "6": #Cleans
 
@@ -278,7 +279,7 @@ if package != "pip":
                 os.system("sudo pkg autoremove")
             elif package == "chromebrew": print("This feature is unavailable on chromebrew\n")
 
-            input("\nPress enter to continue")
+            askreturn()
 
         if user == "7": #Credits
             
@@ -299,7 +300,7 @@ if package == "pip": #Starts a loop
 		    print(" ")
 		    os.system("pip install " + user)
 
-		    input("\nPress enter to continue")
+		    askreturn()
 
 	    if user == "2": #Install
 		    clear()
@@ -307,13 +308,13 @@ if package == "pip": #Starts a loop
 		    print("")
 		    os.system("pip search \"" + user + "\"")
 
-		    input("\nPress enter to continue")
+		    askreturn()
 
 	    if user == "3": #Remove
 		    clear()
 		    user = input(blue + "Please enter which package(s) to remove: " + reset)
 		    print("")
-		    os.system("pip uninstall " + user)
+		    os.system("pip uninstall " + user); askreturn()
             
      
 	    if user == "4": #List
@@ -321,9 +322,9 @@ if package == "pip": #Starts a loop
 		    print("")
 		    user = input(cyan + bold + "Please choose an action:\n\n" + green + "1. List all packages\n2. List outdated packages\n\n" + reset)
 		    if user == "1":
-			    os.system("sudo pip list ")
+			    os.system("sudo pip list "); askreturn()
 		    if user == "2":
-			    os.system("sudo pip list --outdated")
+			    os.system("sudo pip list --outdated"); askreturn()
 
 	    if user == "5": #Credits
 		    print(credit)
