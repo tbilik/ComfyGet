@@ -1,6 +1,8 @@
-﻿# What is TermGet?
-TermGet is a project made by PizzaLovingNerd
-TermGet is a frontend for:
+﻿# What is ComfyGet?
+
+ComfyGet is a fork of the TermGet project. It adds new features such as color support, and easier installation for certain operating systems. New unplanned features may come in the future. Some of the features may be merged back into TermGet soon.
+
+TermGet is a project made by PizzaLovingNerd. TermGet is a frontend for:
 
  - apt-get
  - xbps
@@ -13,7 +15,7 @@ TermGet is a frontend for:
  - chocolatey (Coming Soon)
  - pip (Coming Soon)
 
-## What are some of it's features
+## Some of TermGet's original features
 
  - Simple, easy to use interface
  - Works in the command line
@@ -22,30 +24,43 @@ TermGet is a frontend for:
  - Works on any Linux distribution (and soon Windows)
  - Great for introducing the terminal to new users
  - Code is easy to modify.
- 
-## Where can I get TermGet?
 
-To get an alpha build, please clone the [TermGet GitHub repository](https://github.com/PizzaLovingNerd/TermGet)
+## Features added in ComfyGet
 
-To get a beta or release build, please go to the releases tab, of the [TermGet GitHub repository](https://github.com/PizzaLovingNerd/TermGet/releases)
+ - COLOR
+ - Bash Install Script
+ - Fixed Grammar & Syntax Errors
+ - General Code Cleanup
+ - ... More features may come!
 
-## How do I install TermGet on Linux
+## How do I install ComfyGet on Linux
 
-First install python3. Once you've done that, download and unzip TermGet. Now open a terminal, and go to your downloads folder (Or where ever you have unzipped it). 
+Some dependencies:
+
+ - a terminal with color support (optional, 99% of Linux terminals have color support)
+ - git (required to clone/pull repo)
+ - bash (required for installation, 99% of Linux distros have this already installed)
+ - python3 (required for running ComfyGet)
 
 If this is a first time install, type:
 
-    sh install.sh #Do not run as root
- If you are updating TermGet to a newer version, type:
+    git clone https://github.com/tbilik/ComfyGet
+    cd ComfyGet
+    bash install.sh #Do not run as root
+
+This will prompt you if the script detected the proper operating system installed. If all goes well, just it "y" and enter. If you hit another key, it will ask you if you want to proceed installing even though an OS wasn't detected. If you hit another key again, the installation will safely stop.
+
+ If you are updating ComfyGet to a newer version, type:
  
+    git pull
     sh update.sh #Do not run as root
     
 ## First Time Setup On Linux
-After installing, run TermGet using
+After installing, run ComfyGet using
 
-    sudo termget
+    comfyget
 
-you should get a message that looks like this:
+If no OS was detected during install, you should get a message that looks like this:
 
     Please choose a package manager
 
@@ -58,18 +73,16 @@ you should get a message that looks like this:
 
 Choose your distribution's package manager using the number. My package manager is eopkg, so I would type "5" and press enter.
 
-## How do I use TermGet on Linux
+## How do I use ComfyGet on Linux
 
 This section gets updated with every release, if you are using an alpha build, there might be extra features that aren't on this section of the README file.
 
-TermGet is really easy to use. To run it, all you have to do is open a terminal, and type:
+ComfyGet is really easy to use. To run it, all you have to do is open a terminal, and type:
 
-    sudo termget
+    ComfyGet
 
 
-Just select using the number (for example if my package manager was apt-get, I would type the number 1, and press enter).
-
-Once your package manager has been chosen, you will get a message like this:
+Once your package manager has been chosen, you will get a message similar to this:
 
     Please choose an action
 
@@ -181,7 +194,7 @@ Cleaning helps save hard drive space. It does this by deleting cache, and deleti
 
 To temporally change the package manager used, use an argument. For example, if I wanted to temporally change it to apt-get, I would type
 
-    sudo termget apt-get
+    comfyget apt-get
 
 ### Permanently
 run the following command in a terminal, then the first setup script will start next time you run termget.
@@ -189,8 +202,8 @@ run the following command in a terminal, then the first setup script will start 
     rm -rf ~/.termget/termget-package-manager && > ~/.termget/termget-package-manager
 
 
-## Installing TermGet on Windows
-TermGet isn't out for Windows yet.
+## Installing ComfyGet on Windows
+ComfyGet isn't out for Windows yet. Go talk to PizzaLovingNerd on GitHub if this is a problem. :)
 
 ## License:
 
