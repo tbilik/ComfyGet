@@ -79,7 +79,7 @@ This section gets updated with every release, if you are using an alpha build, t
 
 ComfyGet is really easy to use. To run it, all you have to do is open a terminal, and type:
 
-    ComfyGet
+    comfyget
 
 
 Once your package manager has been chosen, you will get a message similar to this:
