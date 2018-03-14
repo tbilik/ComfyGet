@@ -293,7 +293,7 @@ if package != "pip":
             print(credit)
             time.sleep(3)
             
-        if user == "8": quit()
+        if user == "8": clear(); quit()
 
 
 if package == "pip": #Starts a loop
@@ -336,6 +336,6 @@ if package == "pip": #Starts a loop
 		    print(credit)
 		    time.sleep(3)
 
-	    if user == "6": quit()
+	    if user == "6": clear(); quit()
 
 
