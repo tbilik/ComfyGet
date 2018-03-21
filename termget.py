@@ -20,7 +20,17 @@ try:
 except:
     print(red + "Warning: No package manager file found?" + reset)
 
-version = "2018-03-07"
+figletCG = """
+  ____                 __        ____      _   
+ / ___|___  _ __ ___  / _|_   _ / ___| ___| |_ 
+| |   / _ \| '_ ` _ \| |_| | | | |  _ / _ \ __|
+| |__| (_) | | | | | |  _| |_| | |_| |  __/ |_ 
+ \____\___/|_| |_| |_|_|  \__, |\____|\___|\__|
+                          |___/                
+
+"""
+
+version = "2018-03-21"
 credit = magenta + "\nComfyGet was created by:\n- Linux /usr/\n\nTermGet was created by:\n- PizzaLovingNerd (main developer)\n- SudoLinux\n- Dylan Cruz" + reset
 
 def setpack(var):
@@ -81,12 +91,12 @@ def askreturn(): input(yellow + bold + "\nPress enter to continue" + reset)
 #Runs "clear" over shell to clear the screen.
 
 clear()
-print(green + bold + "Welcome to ComfyGet. This is version " + version + reset)
+print(green + bold + figletCG + "This is version " + version + reset)
 
 if package == " " or package == "null": #Checks for command line argument
     setup = "True"
 else:
-    time.sleep(1)
+    time.sleep(2)
     clear()
     setup = "False"
     #Sets the variable 'setup' to False
@@ -232,6 +242,11 @@ if package != "pip":
                 os.system("sudo emerge -uDN world")
             elif package == "pkg": os.system("sudo pkg upgrade")
             elif package == "chromebrew": os.system("crew upgrade")
+            reboot = input(blue + "\nPackages are updated. Would you like to reboot? [y/n] " + reset)
+            if reboot == "y":
+                print("Rebooting ...")
+                time.sleep(1)
+                os.system("sudo reboot")
             askreturn()
 
         if user == "5": #Updates Database
