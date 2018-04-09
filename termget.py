@@ -30,7 +30,7 @@ figletCG = """
 
 """
 
-version = "2018-03-21"
+version = "2018-04-09"
 credit = magenta + "\nComfyGet was created by:\n- Linux /usr/\n\nTermGet was created by:\n- PizzaLovingNerd (main developer)\n- SudoLinux\n- Dylan Cruz" + reset
 
 def setpack(var):
@@ -280,6 +280,7 @@ if package != "pip":
             elif package == "xbps":
                 os.system("sudo xbps-remove -o")
                 os.system("sudo xbps-remove -O")
+                os.system("sudo vkpurge rm all")
             elif package == "dnf":
                 os.system("sudo dnf autoremove")
                 os.system("sudo dnf clean all")
