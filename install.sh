@@ -7,7 +7,7 @@ sleep 5
 if [[ $(which apt-get 2> /dev/null) ]]; then
 	echo -n "A Debian or Debian-based system has been detected. Apt-get will be used. Is this correct? [y/n] "
 	pm=apt-get
-elif [[ $(which homebrew 2> /dev/null) ]]; then
+elif [[ $(which brew 2> /dev/null) ]]; then
         echo -n "Why do you torture yourself with using Mac OS? Fine, homebrew will be used. Is this correct? [y/n] "
         pm=homebrew
 elif [[ $(which pacman 2> /dev/null) ]]; then
