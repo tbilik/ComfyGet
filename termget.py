@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import os
 import time
 import sys
@@ -16,7 +17,7 @@ magenta = "\033[35m"
 cyan = "\033[36m"
 
 try:
-    package_file_read = open("/home/" + getpass.getuser() + "/.termget/termget-package-manager","r").read()
+    package_file_read = open("/etc/comfyget/termget-package-manager","r").read()
 except:
     print(red + "Warning: No package manager file found?" + reset)
 
@@ -30,15 +31,11 @@ figletCG = """
 
 """
 
-version = "2018-04-16"
+version = "2018-04-17"
 credit = magenta + "\nComfyGet was created by:\n- Linux /usr/\n\nTermGet was created by:\n- PizzaLovingNerd (main developer)\n- SudoLinux\n- Dylan Cruz" + reset
 
 def setpack(var):
-    try:
-        package_file_write = open("/home/" + getpass.getuser() + "/.termget/termget-package-manager","a")
-        if package != "null": package_file_write.write(var)
-    except:
-        print(red + "Warning: No package manager file found" + reset)
+    os.system('sudo bash -c "echo -n ' + var + ' > /etc/comfyget/termget-package-manager"')
 #Imports libraries and sets variables
 
 if getpass.getuser() == "chronos":
@@ -212,7 +209,6 @@ if (package != "pip") and (package != "apm"):
             print("")
             if package == "apt-get":
                 user1 = input(cyan + bold + "How will you like to remove the package?\n\n" + green + "1. remove, removes just the package (faster)\n2. purge, removes the package, and all it's configuration files (saves space)" + reset)
-
                 clear()
                 if user1 == "1": os.system("sudo apt-get remove " + user)
                 if user1 == "2": os.system("sudo apt-get purge " + user)
