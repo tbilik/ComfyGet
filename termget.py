@@ -30,7 +30,7 @@ figletCG = """
 
 """
 
-version = "2018-04-09"
+version = "2018-04-16"
 credit = magenta + "\nComfyGet was created by:\n- Linux /usr/\n\nTermGet was created by:\n- PizzaLovingNerd (main developer)\n- SudoLinux\n- Dylan Cruz" + reset
 
 def setpack(var):
@@ -67,6 +67,8 @@ if len(sys.argv) == 2:
     elif sys.argv[1] == "emerge": package = "emerge"
     elif sys.argv[1] == "pkg": package = "pkg"
     elif sys.argv[1] == "chromebrew": package = "chromebrew"
+    elif sys.argv[1] == "homebrew": package = "homebrew"
+    elif sys.argv[1] == "apm": package = "apm"
 
 try:
     if package == " ":
@@ -80,6 +82,7 @@ try:
         elif package_file_read == "emerge": package = "emerge"
         elif package_file_read == "pkg": package = "pkg"
         elif package_file_read == "chromebrew": package = "chromebrew"
+        elif package_file_read == "homebrew": package = "homebrew"
 except:
     print(red + "Warning: Missing Package File..." + reset)
     if package == " ": package = "null"
@@ -104,7 +107,7 @@ else:
 #Asks user which package manager to use
 
 while setup == "True": #Repeats until setup is not true
-    print(cyan + bold + "\nPlease choose a package manager:\n\n" + green + "1. apt-get (For Debian, and Debian based systems.)\n2. xbps (For Void Linux, and Void Linux based systems)\n3. dnf (For Fedora, and Fedora based systems)\n4. yum (For older versions of Fedora, and older Fedora based systems)\n5. zypper (For OpenSUSE, and OpenSUSE based systems)\n6. eopkg (For Solus, and Solus based systems)\n7. pacman (For Arch, and Arch based systems)\n8. emerge (For Gentoo, and Gentoo based systems)\n9. pkg (for FreeBSD, and FreeBSD based systems.)\n10. chromebrew (for Chrome OS, Chromium OS, CloudReady, and ZayuOS)\n" + reset)
+    print(cyan + bold + "\nPlease choose a package manager:\n\n" + green + "1. apt-get (For Debian, and Debian based systems.)\n2. xbps (For Void Linux, and Void Linux based systems)\n3. dnf (For Fedora, and Fedora based systems)\n4. yum (For older versions of Fedora, and older Fedora based systems)\n5. zypper (For OpenSUSE, and OpenSUSE based systems)\n6. eopkg (For Solus, and Solus based systems)\n7. pacman (For Arch, and Arch based systems)\n8. emerge (For Gentoo, and Gentoo based systems)\n9. pkg (for FreeBSD, and FreeBSD based systems.)\n10. chromebrew (for Chrome OS, Chromium OS, CloudReady, and ZayuOS)\n11. homebrew (for macOS/Mac OS X)\n" + reset)
     user = input() #Asks for user input
     if user == "1":
         setup = "false"
@@ -146,6 +149,10 @@ while setup == "True": #Repeats until setup is not true
         setup = "false"
         package = "chromebrew" #Sets package manager to emerge
         setpack("chromebrew")
+    elif user == "11":
+        setup = "false"
+        package = "homebrew"
+        setpack("homebrew")
     else:
         clear()
         print(red + "Error. Invalid package manager" + reset)
@@ -153,7 +160,7 @@ while setup == "True": #Repeats until setup is not true
         clear()
         #Sets up the package manager
 
-if package != "pip":
+if (package != "pip") and (package != "apm"):
     while True: #Starts a loop
         clear()
         print(cyan + bold + "Please choose an action\n\n" + green + "1. Search for packages\n2. Install an application\n3. Remove an application\n4. Update all packages\n5. Update Database\n6. Clean\n7. Credits\n8. Exit\n" + reset)
@@ -175,6 +182,7 @@ if package != "pip":
             elif package == "emerge": os.system("emerge -S " + user)
             elif package == "pkg": os.system("pkg search " + user)
             elif package == "chromebrew": os.system("crew search " + user)
+            elif package == "homebrew": os.system("brew search " + user)
             askreturn()
 
         if user == "2": #Install
@@ -195,6 +203,7 @@ if package != "pip":
             elif package == "emerge": os.system("emerge " + user)
             elif package == "pkg": os.system("sudo pkg install " + user)
             elif package == "chromebrew": os.system("crew install " + user)
+            elif package == "homebrew": os.system("brew install " + user)
             askreturn()
 
         if user == "3": #Remove
@@ -216,6 +225,7 @@ if package != "pip":
             elif package == "emerge": os.system("emerge -C" + user)
             elif package == "pkg": os.system("sudo pkg delete " + user)
             elif package == "chromebrew": os.system("crew remove " + user)
+            elif package == "homebrew": os.system("brew uninstall " + user)
             askreturn()
 
         if user == "4": #Updates Packages
@@ -242,6 +252,7 @@ if package != "pip":
                 os.system("sudo emerge -uDN world")
             elif package == "pkg": os.system("sudo pkg upgrade")
             elif package == "chromebrew": os.system("crew upgrade")
+            elif package == "homebrew": os.system("brew upgrade")
             reboot = input(blue + "\nPackages are updated. Would you like to reboot? [y/n] " + reset)
             if reboot == "y":
                 print("Rebooting ...")
@@ -264,6 +275,7 @@ if package != "pip":
             elif package == "yum": os.system("sudo yum yum check-update")
             elif package == "pkg": os.system("sudo pkg update")
             elif package == "chromebrew": print("This feature is unavailable for chromebrew\n")
+            elif package == "homebrew": os.system("brew update")
             askreturn()
 
         if user == "6": #Cleans
@@ -300,7 +312,7 @@ if package != "pip":
                 os.system("sudo pkg clean")
                 os.system("sudo pkg autoremove")
             elif package == "chromebrew": print("This feature is unavailable on chromebrew\n")
-
+            elif package == "homebrew": print(reset + "Homebrew already does this automagically. :)\n")
             askreturn()
 
         if user == "7": #Credits
@@ -349,9 +361,63 @@ if package == "pip": #Starts a loop
 			    os.system("sudo pip list --outdated"); askreturn()
 
 	    if user == "5": #Credits
-		    print(credit)
+		    clear(); print(credit)
 		    time.sleep(3)
 
 	    if user == "6": clear(); quit()
 
+if package == "apm":  # Starts a loop
+    while True:
+        clear()
+        user = input(cyan + bold + "Please choose an action\n" + green + "\n1. Search for packages\n2. Install an application\n3. Upgrade a package\n4. Remove an application\n5. List packages installed with pip\n6. Credits\n7. Exit\n\n" + reset)
+        if user == "1":  # Search
+            clear()
+            user = input(blue + "Please enter search query: " + reset)
+            print("")
+            os.system("apm search " + user)
+
+            askreturn()
+
+        if user == "2":  # Install
+            clear()
+            user = input(blue + "Please enter which package(s) to install: " + reset)
+            print("")
+            os.system("apm install " + user)
+
+            askreturn()
+
+        if user == "3":  # Upgrade
+            clear()
+            user = input(blue + "Please enter which package(s) to upgrade: " + reset)
+            print("")
+            os.system("apm upgrade " + user)
+
+            askreturn()
+
+        if user == "4":  # Remove
+            clear()
+            user = input(blue + "Please enter which package(s) to remove: " + reset)
+            print("")
+            os.system("apm uninstall " + user)
+
+            askreturn()
+
+        if user == "5":  # List
+            clear()
+            print("")
+            user = input(cyan + bold + "Please choose an action:\n" + green + "\n1. List all packages\n2. List outdated packages\n\n" + reset)
+            if user == "1": os.system("apm list")
+            if user == "2": os.system("apm outdated")
+
+            askreturn()
+
+        if user == "6":  # Credits
+            clear()
+            print(credit)
+            time.sleep(3)
+            clear()
+
+        if user == "7":
+            print(reset)
+            quit()
 
